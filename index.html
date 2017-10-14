@@ -6,7 +6,6 @@
     <meta name="description" content="Hello, World! - A-Frame">
     <script src="https://aframe.io/releases/0.7.0/aframe.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/annyang/2.5.0/annyang.min.js"></script> 
-    <script src="https://unpkg.com/aframe-speech-command-component@0.4.2/index.js"></script>
   </head>
   <body>
     <script>
@@ -21,38 +20,56 @@
           el.setAttribute('visible', !el.getAttribute('visible'));
         }
       });
-      // AFRAME.registerComponent('custom-speech-recognition', {
-      //   init: function () {
-      //     //console.log("in annyang-speech-recognition init");
-      //     this.el.play();
-      //   },
-      //   play: function() {
-      //     if (!annyang) { return }
+      AFRAME.registerComponent('speech-recognition', {
+        init: function () {
+          //console.log("in annyang-speech-recognition init");
+          this.play()
+        },
+        showPerson: function(name) {
+          console.log(`show name ${name}`)
+        },
+        showCurrentSpeaker: function() {
+          console.log('show current speaker')
+        },
+        play: function() {
+          if (!annyang) { return }
 
-      //     var speechCommandSystem = document.querySelector('a-scene').systems['speech-command'];
-      //     var commands = {};
-      //     var commandsMap = {};
-      //     for (var i = 0; i < speechCommandSystem.entities.length; i++) {
-      //         var speechCommand = speechCommandSystem.entities[i];
-      //         commandsMap[speechCommand.data.command] = speechCommand;
-      //         // note: function empty here because real work is done in the resultMatch callback below
-      //         commands[speechCommand.data.command] = function() { };
-      //     }
-      //     annyang.addCommands(commands);
+          let commands = {
+            'who is talking': this.showCurrentSpeaker,
+            'who is speaking': this.showCurrentSpeaker,
+            'who is *name': this.showPerson
+          }
 
-      //     annyang.addCallback('resultMatch', function(userSaid, commandText, phrases) {
-      //         //console.log("commandText: "+commandText); // sample output: 'hello (there)'
-      //         var speechCommand = commandsMap[commandText];
-      //         speechCommand.executeCommand();
-      //     });
-      //     // Start listening. You can call this here, or attach this call to an event, button, etc.
-      //     annyang.start();
-      //   }
-      // });
+          annyang.debug()
+          annyang.addCommands(commands)
+          annyang.setLanguage('en')
+
+
+          // var speechCommandSystem = document.querySelector('a-scene').systems['speech-command'];
+          // var commands = {};
+          // var commandsMap = {};
+          // for (var i = 0; i < speechCommandSystem.entities.length; i++) {
+          //     var speechCommand = speechCommandSystem.entities[i];
+          //     commandsMap[speechCommand.data.command] = speechCommand;
+          //     // note: function empty here because real work is done in the resultMatch callback below
+          //     commands[speechCommand.data.command] = function() { };
+          // }
+          // annyang.addCommands(commands);
+
+          // annyang.addCallback('resultMatch', function(userSaid, commandText, phrases) {
+          //     //console.log("commandText: "+commandText); // sample output: 'hello (there)'
+          //     var speechCommand = commandsMap[commandText];
+          //     speechCommand.executeCommand();
+          // });
+          // Start listening. You can call this here, or attach this call to an event, button, etc.
+          console.log('annyang starting')
+          annyang.start();
+        }
+      });
     </script>
     <a-scene>
       <a-videosphere src="#video" rotation="0 180 0"></a-videosphere>
-      <a-entity id="annyang" annyang-speech-recognition></a-entity>
+      <a-entity id="annyang" speech-recognition></a-entity>
       <a-assets>
         <video id="rhonyc" 
                preload="auto" 
@@ -70,19 +87,7 @@
                 material="shader: flat; src: #rhonyc"
                 geometry="primitive: plane; width: 360; height: 240;"
                 position="0 0 -250"
-                rotation="0 0 0"
-                speech-command__hide="command: hide; 
-                                       type: function; 
-                                       targetComponent: text-box;
-                                       targetElement: #textBox; 
-                                       function: toggle; 
-                                       keyCode: 72"
-                speech-command__show="command: show; 
-                                       type: function; 
-                                       targetComponent: text-box;
-                                       targetElement: #textBox; 
-                                       function: toggle; 
-                                       keyCode: 83">
+                rotation="0 0 0">
       </a-entity>
     </a-scene>
   </body>

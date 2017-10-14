@@ -6,6 +6,9 @@
     <meta name="description" content="Hello, World! - A-Frame">
     <script src="https://aframe.io/releases/0.7.0/aframe.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/annyang/2.5.0/annyang.min.js"></script> 
+    <script src="https://unpkg.com/aframe-text-geometry-component@^0.5.0/dist/aframe-text-geometry-component.min.js"></script>
+    <script src="https://rawgit.com/ngokevin/aframe-look-at-component/master/dist/aframe-look-at-component.min.js"></script>
+    <!-- <script src="./../assets/xfinity_sans_light_regular.js"></script> -->
   </head>
   <body>
     <script>
@@ -30,6 +33,8 @@
         },
         showCurrentSpeaker: function() {
           console.log('show current speaker')
+          const descriptionText = document.querySelector('#descriptionText');
+          descriptionText.setAttribute('value', 'Some lady is talking')
         },
         play: function() {
           if (!annyang) { return }
@@ -71,24 +76,40 @@
       <a-videosphere src="#video" rotation="0 180 0"></a-videosphere>
       <a-entity id="annyang" speech-recognition></a-entity>
       <a-assets>
+        <a-asset-item id="xfinitySansLightRegular" 
+                      src="/assets/xfinity_sans_light_regular.json">
+        </a-asset-item>
+        <a-mixin id="xfinitySansLightRegular" text="font: #xfinitySansLightRegular"></a-mixin>
         <video id="rhonyc" 
                preload="auto" 
                src="./../assets/rhonyc_801.mp4#t=50"
                autoplay loop crossorigin="anonymous" position="2 2 2">
         </video>
       </a-assets>
-      <a-box text-box
-             id="textBox"
-             material="color: #555555; transparent: true; opacity: 0.9" 
-             depth="0.1" height="1" width="1" 
-             position="4 2 -5">
-      </a-box>
       <a-entity id="video"
                 material="shader: flat; src: #rhonyc"
                 geometry="primitive: plane; width: 360; height: 240;"
                 position="0 0 -250"
                 rotation="0 0 0">
       </a-entity>
+      <a-camera camera>
+        <a-text id="descriptionText"
+                value="Sample text"
+                font="/assets/Roboto-msdf.json"
+                fontImage="/assets/Roboto-msdf.png"
+                height="20"
+                position="4.8 3.5 -5"
+                color="black"
+                width="2.5"
+                >
+        </a-text>
+        <a-box text-box
+             id="textBox"
+             material="color: #555555; transparent: true; opacity: 0.5" 
+             depth="0.01" height="100" width="3" 
+             position="6 2 -5">
+        </a-box>
+      </a-camera>
     </a-scene>
   </body>
 </html>

@@ -26,13 +26,37 @@ const camPositions = {
   },
   cam3: {
     position: {
-      x: -0.608,
-      y: 1.700,
-      z: 3.153,
+      x: 12.703,
+      y: 0.885,
+      z: -5.872,
     },
     rotation: {
-      x: 0,
-      y: 270,
+      x: 0.000,
+      y: 180.000,
+      z: 0,
+    }
+  },
+  cam4: {
+    position: {
+      x: 12.558,
+      y: 1.676,
+      z: -3.985,
+    },
+    rotation: {
+      x: 0.000,
+      y: 180.000,
+      z: 0,
+    }
+  },
+  cam5: {
+    position: {
+      x: -8.524,
+      y: 6.865,
+      z: -24.437,
+    },
+    rotation: {
+      x: 5.510,
+      y: -129.546,
       z: 0,
     }
   },
@@ -72,6 +96,12 @@ cam2.addEventListener('click', handler);
 
 var cam3 = document.getElementById('cam3');
 cam3.addEventListener('click', handler);
+
+var cam4 = document.getElementById('cam4');
+cam4.addEventListener('click', handler);
+
+var cam5 = document.getElementById('cam5');
+cam5.addEventListener('click', handler);
 
 camera.addEventListener('animationcomplete', () => {
   console.log('animationcomplete');

@@ -20,7 +20,12 @@
     <a-scene>
 
       <a-assets>
-        <a-asset-item id="room-model" src="assets/newsroom_set/newsroom_set.dae"></a-asset-item>
+        <!-- ROOMS -->
+        <a-asset-item id="basic-room" src="assets/nbc_room/model.dae"></a-asset-item>
+        <a-asset-item id="nbc-room" src="assets/newsroom_set/newsroom_set.dae"></a-asset-item>
+        <a-asset-item id="central-perk" src="assets/central_perk/central_perk.dae"></a-asset-item>
+
+
         <a-asset-item id="plane-obj" src="/assets/plane.obj"></a-asset-item>
         <a-asset-item id="plane-mtl" src="/assets/plane.mtl"></a-asset-item>
         <!-- <a-asset-item id="speaker-model" src="assets/speaker/model.dae"></a-asset-item> -->
@@ -62,6 +67,8 @@
         </a-entity>
       </a-entity>
 
+      <!-- <a-entity collada-model="#speaker-model" position="0 1 0"></a-entity> -->
+
       <!-- Scrolling article -->
       <a-entity>
         <a-curvedimage src="#article" opacity="0.6" radius="4" theta-length="30" height="100" rotation="0 200 0" scale="0.5 0.5 0.5" material="" geometry="" visible="">
@@ -74,8 +81,11 @@
         <a-animation attribute="position" from="20 0 -2" to="-20 8 -2" dur="30000" easing="ease-out"></a-animation>
       </a-entity>
 
-      <!-- <a-entity collada-model="#speaker-model" position="0 1 0"></a-entity> -->
-      <a-entity collada-model="#room-model" rotation="0 -45 0"></a-entity>
+      <!-- Rooms -->
+      <a-entity collada-model="#nbc-room" rotation="0 -45 0"></a-entity>
+      <a-entity collada-model="#basic-room" position="0 0 15"></a-entity>
+      <a-entity collada-model="#central-perk" position="0 0 -10"></a-entity>
+
       <a-sky color="#ECECEC"></a-sky>
       <a-entity
         tv="src: #the-vid; height: 2.600; width: 4.622"

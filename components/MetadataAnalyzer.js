@@ -1,6 +1,6 @@
 export default class MetadataAnalyzer {
   constructor() {
-    this.friendsDataPromise = fetch('./quantiphi/friends/metatags/output_E01.json')
+    this.friendsDataPromise = fetch('quantiphi/friends/metatags/output_E01.json')
     .then(resp => resp.json())
     .then(data => {
       return Object.entries(data).map((data) => {
@@ -15,7 +15,7 @@ export default class MetadataAnalyzer {
       })
     })
 
-    this.newsDataPromise = fetch('./smapi/assetdata/1034_20171013170000.json')
+    this.newsDataPromise = fetch('smapi/assetdata/1034_20171013170000.json')
     .then(resp => resp.json())
     .then(data => data.events.programSegments)
     .then(segments => {

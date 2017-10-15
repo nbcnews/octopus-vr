@@ -11,7 +11,7 @@ AFRAME.registerComponent('speech-recognition', {
   init: function () {
     //console.log("in annyang-speech-recognition init");
     this.analyzer = new MetadataAnalyzer()
-    this.hideText()
+    // this.hideText()
   },
 
   getTextEl: function() {

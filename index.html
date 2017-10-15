@@ -29,7 +29,8 @@
         <a-asset-item id="news-room" src="assets/newsroom_set/Newsroom_set.dae"></a-asset-item>
         <!-- <a-asset-item id="speaker-model" src="assets/speaker/model.dae"></a-asset-item> -->
         <video id="the-vid" src="smapi/videos/airport_bomb.mp4">
-        <img id='article' src="assets/article1.png"></img>
+        <img id='article1' src="assets/article1.png"></img>
+        <img id='article2' src="assets/article2.png"></img>
         <video id="friends"
                src="quantiphi/friends/taggedvideos/friends_S07_E01.mp4"
                crossorigin="anonymous">
@@ -77,8 +78,14 @@
 
       <!-- Scrolling article -->
       <a-entity>
-        <a-curvedimage src="#article" opacity="0.6" radius="4" theta-length="30" height="100" rotation="0 200 0" scale="0.5 0.5 0.5" material="" geometry="" visible="">
-          <a-animation attribute="position" from="-0.5 -22 -6" to="-0.5 160 -6" dur="5000000" easing="ease-out"></a-animation>
+        <a-curvedimage src="#article1" opacity="0.6" radius="6" theta-length="30" height="100" position="-4 -22 1" rotation="0 230 0" scale="0.5 0.5 0.5">
+          <a-animation attribute="position" begin="mouseenter" end="mouseleave" pauseEvents="animationPause" resumeEvents= "animationResume" to="-4 160 1" dur="3000000" easing="ease-out"></a-animation>
+        </a-curvedimage>
+      </a-entity>
+
+      <a-entity>
+        <a-curvedimage src="#article2" opacity="0.7" radius="6" theta-length="30" height="85" position="-5 -18.5 0" rotation="0 230 1" scale="0.5 0.5 0.5">
+          <a-animation attribute="position" begin="mouseenter" end="mouseleave" pauseEvents="animationPause" resumeEvents= "animationResume" to="-5 100 0" dur="1500000" easing="ease-out"></a-animation>
         </a-curvedimage>
       </a-entity>
 
@@ -129,7 +136,7 @@
                 baseline="top"
                 >
       </a-text>
-      <a-box 
+      <a-box
            id="newsTextBox"
            material="color: #1565C0; transparent: true; opacity: 0.9"
            depth="0.01" height="2.4" width="2"

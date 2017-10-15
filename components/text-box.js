@@ -18,7 +18,7 @@ AFRAME.registerComponent('text-box', {
 
     let counter = 0
     const timer = setInterval(() => {
-      counter = (counter++) % data.length
+      counter = (counter + 1) % data.length
       newsTextEl.setAttribute('value', data[counter])
     }, 3000)
   }

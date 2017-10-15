@@ -1,4 +1,5 @@
 AFRAME.registerComponent('tv', {
+  multiple: true,
   schema: {
     src: {type: 'string', default: ''},
     height: {type: 'number', default: 13.5},
@@ -6,6 +7,7 @@ AFRAME.registerComponent('tv', {
   },
   init() {
     const { data: { src, height, width } } = this;
+    console.log(src, height, width)
     const video = document.querySelector(src)
     this.videoEl = video
     this.el.setAttribute('material', `shader: flat; src: ${src}`)

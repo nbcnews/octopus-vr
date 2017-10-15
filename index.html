@@ -6,6 +6,8 @@
     <meta name="description" content="Octopus VR">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://aframe.io/releases/0.7.0/aframe.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/annyang/2.5.0/annyang.min.js"></script> 
+    <script src="components/speech-recognition.js" type="module"></script>
     <script src="components/tv.js"></script>
     <style media="screen">
       .demo-nav  {
@@ -20,18 +22,20 @@
     <a-scene>
 
       <a-assets>
-        <!-- ROOMS -->
-        <a-asset-item id="basic-room" src="assets/nbc_room/model.dae"></a-asset-item>
-        <a-asset-item id="nbc-room" src="assets/newsroom_set/newsroom_set.dae"></a-asset-item>
         <a-asset-item id="central-perk" src="assets/central_perk/central_perk.dae"></a-asset-item>
-
-
-        <a-asset-item id="plane-obj" src="/assets/plane.obj"></a-asset-item>
-        <a-asset-item id="plane-mtl" src="/assets/plane.mtl"></a-asset-item>
+        <a-asset-item id="nbc-room" src="assets/basic_room/nbc_room.dae"></a-asset-item>
+        <a-asset-item id="news-room" src="assets/newsroom_set/newsroom_set.dae"></a-asset-item>
         <!-- <a-asset-item id="speaker-model" src="assets/speaker/model.dae"></a-asset-item> -->
         <video id="the-vid" src="smapi/videos/airport_bomb.mp4">
         <img id='article' src="assets/article1.png"></img>
+        <video id="friends" 
+               src="./../quantiphi/friends/taggedvideos/friends_S07_E01.mp4"
+               crossorigin="anonymous">
+        </video>
       </a-assets>
+
+      <a-entity id="annyang" 
+                speech-recognition="videoEl: #videoContent; textEl: #nbcDescriptionText; textBoxEl: #nbcTextBox"></a-entity>
 
       <a-entity light="type: ambient; color: #fff; intensity: 0.5"></a-entity>
 
@@ -82,15 +86,40 @@
       </a-entity>
 
       <!-- Rooms -->
-      <a-entity collada-model="#nbc-room" rotation="0 -45 0"></a-entity>
-      <a-entity collada-model="#basic-room" position="0 0 15"></a-entity>
+      <a-entity collada-model="#news-room" rotation="0 -45 0"></a-entity>
+      <a-entity collada-model="#nbc-room" position="13 0 -5"></a-entity>
       <a-entity collada-model="#central-perk" position="0 0 -10"></a-entity>
 
+      <!-- Heads up display -->
+      <a-text id="nbcDescriptionText"
+                value='Try asking "where are they?" Or "Who is speaking?"'
+                font="assets/Roboto-msdf.json"
+                fontImage="assets/Roboto-msdf.png"
+                height="0.5" width="0.3"
+                position="11.68 2.1 -3.1"
+                rotation="0 180 0"
+                color="white"
+                wrap-count="20"
+                anchor="left"
+                baseline="top"
+                >
+      </a-text>
+      <a-box text-box
+           id="nbcTextBox"
+           material="color: #1565C0; transparent: true; opacity: 0.9" 
+           depth="0.01" height="0.75" width="0.5" 
+           position="11.5 1.8 -3">
+      </a-box>
       <a-sky color="#ECECEC"></a-sky>
       <a-entity
-        tv="src: #the-vid; height: 2.600; width: 4.622"
+        tv__vid="src: #the-vid; height: 2.600; width: 4.622"
         position="3.135 2.641 -5.733"
         rotation="0 -45 0">
+      </a-entity>
+      <a-entity
+        tv__nbcroom="src: #friends; height: 0.73; width: 1.29"
+        position="12.63 1.77 -2.8"
+        rotation="0 180 0">
       </a-entity>
     </a-scene>
     <div class="demo-nav">

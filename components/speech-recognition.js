@@ -85,6 +85,7 @@ AFRAME.registerComponent('speech-recognition', {
   },
 
   showLocation: function() {
+    console.log('showLocation')
     const time = this.getCurrentTime()
     if (!time) { 
       return 

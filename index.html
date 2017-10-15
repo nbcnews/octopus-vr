@@ -35,7 +35,7 @@
       </a-assets>
 
       <a-entity id="annyang" 
-                speech-recognition="videoEl: #videoContent; textEl: #nbcDescriptionText; textBoxEl: #nbcTextBox"></a-entity>
+                speech-recognition="videoEl: #friends; textEl: #nbcDescriptionText; textBoxEl: #nbcTextBox"></a-entity>
 
       <a-entity light="type: ambient; color: #fff; intensity: 0.5"></a-entity>
 
@@ -110,6 +110,30 @@
            depth="0.01" height="0.75" width="0.5" 
            position="11.5 1.8 -3">
       </a-box>
+
+
+      <!-- News display -->
+      <a-text id="newsDescriptionText"
+                value='Text teajlfsdla lasjfls;ad fjl;aksdjfal;sjfl'
+                font="assets/Roboto-msdf.json"
+                fontImage="assets/Roboto-msdf.png"
+                height="3" width="1.05"
+                position="4 3.3 -3"
+                rotation="0 -45 0"
+                color="white"
+                wrap-count="20"
+                anchor="left"
+                baseline="top"
+                >
+      </a-text>
+      <a-box text-box
+           id="newsTextBox"
+           material="color: #1565C0; transparent: true; opacity: 0.9" 
+           depth="0.01" height="2.4" width="2" 
+           position="4.8 2.4 -3"
+           rotation="0 -45 0">
+      </a-box>
+
       <a-sky color="#ECECEC"></a-sky>
       <a-entity
         tv__vid="src: #the-vid; height: 2.600; width: 4.622"

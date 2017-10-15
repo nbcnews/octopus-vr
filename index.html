@@ -4,15 +4,14 @@
     <meta charset="utf-8">
     <title>Hello, World! - A-Frame</title>
     <meta name="description" content="Hello, World! - A-Frame">
-    <script src="https://aframe.io/releases/0.7.0/aframe.min.js"></script>
+    <script src="https://aframe.io/releases/0.6.1/aframe.min.js"></script>
   </head>
   <body>
     <a-scene>
-      <a-assets>
-        <a-asset-item id="room" src="/assets/big_room/scene.gltf"></a-asset-item>
+      <a-assets timeout="8000">
+        <a-asset-item id="set-obj" src="assets/room/set.gltf"></a-asset-item>
       </a-assets>
-      <a-entity position="-600 -60 400" gltf-model="#room"></a-entity>
-      <a-sky color="#ECECEC"></a-sky>
+      <a-entity id="room" gltf-model="#set-obj" roomcolor="#999" ></a-entity>
     </a-scene>
   </body>
 </html>

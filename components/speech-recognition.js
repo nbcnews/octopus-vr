@@ -1,6 +1,7 @@
 'use strict'
 
 import MetadataAnalyzer from './MetadataAnalyzer.js'
+import AzureAPI from './AzureAPI.js'
 
 AFRAME.registerComponent('speech-recognition', {
   schema: {
@@ -40,6 +41,16 @@ AFRAME.registerComponent('speech-recognition', {
     this.getTextBoxEl().setAttribute('visible', true);
   },
 
+  findActors: function() {
+    const imageData = this.getImageFromVideo()
+    console.log(imageData)
+    AzureAPI.findCelebrities(imageData)
+    .then(celebrities => {
+      const text = this.combinePeopleIntoDisplayText(celebrities)
+      this.updateDescriptionText(text)
+    })
+  },
+
   showPeople: function() {
     const time = Math.max(this.getCurrentTime() - 2, 1)
     console.log(`Show people at ${time}`)
@@ -49,16 +60,7 @@ AFRAME.registerComponent('speech-recognition', {
     this.analyzer.getTag(time)
     .then(tag => {
       const characters = tag.data.CHARACTERS
-      let text
-      if (characters.length == 1) {
-        text = `That was ${characters[0]}`
-      } else if (characters.length == 2) {
-        text = `They were ${characters[0]} and ${characters[1]}`
-      } else {
-        text = "They were " + characters.slice(0, characters.length - 2).reduce((character, str) => {
-          return `${str}, ${character}`
-        }) + ", " + characters[-1]
-      }
+      const text = this.combinePeopleIntoDisplayText(characters)
 
       this.updateDescriptionText(text)
     })
@@ -85,6 +87,18 @@ AFRAME.registerComponent('speech-recognition', {
     })
   },
 
+  combinePeopleIntoDisplayText: function(people) {
+    if (people.length == 1) {
+      text = `That was ${people[0]}`
+    } else if (people.length == 2) {
+      text = `They were ${people[0]} and ${people[1]}`
+    } else {
+      text = "They were " + people.slice(0, people.length - 2).reduce((character, str) => {
+        return `${str}, ${character}`
+      }) + ", " + people[-1]
+    }
+  },
+
   updateDescriptionText: function(newText) {
     console.log(`Setting text to ${newText}`)
     const descriptionText = document.querySelector(this.data.textEl);
@@ -93,6 +107,13 @@ AFRAME.registerComponent('speech-recognition', {
     setTimeout(() => {
       this.hideText(this)
     }, 4000)
+  },
+
+  getImageFromVideo: function() {
+    const canvas = document.createElement("canvas");
+    canvas.getContext('2d').drawImage(this.getVideoEl(), 0, 0, canvas.width, canvas.height);
+
+    return canvas.toBlob()
   },
 
   play: function() {
@@ -107,6 +128,7 @@ AFRAME.registerComponent('speech-recognition', {
       'who is *name': this.showPerson.bind(this),
       'where is this': this.showLocation.bind(this),
       'where are they': this.showLocation.bind(this),
+      'what actors': this.findActors.bind(this),
     }
 
     annyang.debug()

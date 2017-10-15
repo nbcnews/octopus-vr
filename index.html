@@ -10,6 +10,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/annyang/2.5.0/annyang.min.js"></script>
     <script src="components/speech-recognition.js" type="module"></script>
     <script src="components/tv.js"></script>
+    <script src="components/text-box.js"></script>
     <style media="screen">
       .demo-nav  {
         position: absolute;
@@ -105,7 +106,7 @@
                 baseline="top"
                 >
       </a-text>
-      <a-box text-box
+      <a-box
            id="nbcTextBox"
            material="color: #1565C0; transparent: true; opacity: 0.9"
            depth="0.01" height="0.75" width="0.5"
@@ -115,7 +116,8 @@
 
       <!-- News display -->
       <a-text id="newsDescriptionText"
-                value='Text teajlfsdla lasjfls;ad fjl;aksdjfal;sjfl'
+              text-box="textEl: #newsDescriptionText"
+                value=''
                 font="assets/Roboto-msdf.json"
                 fontImage="assets/Roboto-msdf.png"
                 height="3" width="1.05"
@@ -127,7 +129,7 @@
                 baseline="top"
                 >
       </a-text>
-      <a-box text-box
+      <a-box 
            id="newsTextBox"
            material="color: #1565C0; transparent: true; opacity: 0.9"
            depth="0.01" height="2.4" width="2"

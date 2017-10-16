@@ -5,13 +5,10 @@
   "license": "MIT",
   "scripts": {
     "start": "budo --live --verbose --port 3000 --open",
-    "start-games": "budo --dir games --live --verbose --port 3000 --open",
-    "deploy": "ghpages",
-    "ghpages": "ghpages"
+    "start-games": "budo --dir games --live --verbose --port 3000 --open"
   },
   "devDependencies": {
-    "budo": "^7.0.0",
-    "ghpages": "0.0.3"
+    "budo": "^7.0.0"
   },
   "keywords": [
     "aframe",

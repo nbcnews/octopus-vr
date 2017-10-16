@@ -1076,25 +1076,25 @@
     </library_effects>
     <library_images>
         <image id="ID20">
-            <init_from>__Metal_Corrogated_Shiny_2.jpg</init_from>
+            <init_from>model/__Metal_Corrogated_Shiny_2.jpg</init_from>
         </image>
         <image id="ID30">
-            <init_from>__Metal_Aluminum_Anodized_1.jpg</init_from>
+            <init_from>model/__Metal_Aluminum_Anodized_1.jpg</init_from>
         </image>
         <image id="ID40">
-            <init_from>__Metal_Aluminum_Anodized_2.jpg</init_from>
+            <init_from>model/__Metal_Aluminum_Anodized_2.jpg</init_from>
         </image>
         <image id="ID50">
-            <init_from>__Metal_Corrogated_Shiny_1.jpg</init_from>
+            <init_from>model/__Metal_Corrogated_Shiny_1.jpg</init_from>
         </image>
         <image id="ID80">
-            <init_from>__Metal_Aluminum_Anodized_3.jpg</init_from>
+            <init_from>model/__Metal_Aluminum_Anodized_3.jpg</init_from>
         </image>
         <image id="ID90">
-            <init_from>__Metal_Corrogated_Shiny_3.jpg</init_from>
+            <init_from>model/__Metal_Corrogated_Shiny_3.jpg</init_from>
         </image>
         <image id="ID124">
-            <init_from>__Metal_Seamed_.jpg</init_from>
+            <init_from>model/__Metal_Seamed_.jpg</init_from>
         </image>
     </library_images>
     <scene>
